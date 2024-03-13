@@ -58,6 +58,9 @@ model Order{
   draft Boolean @default(true)
   name String?
 
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
   @@map("orders")
   orderItems OrderItem[]
 }
