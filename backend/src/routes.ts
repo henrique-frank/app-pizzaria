@@ -14,10 +14,16 @@ import { ListByCategoryController } from './controllers/products/ListByCategoryC
 import { CreateOrderController } from './controllers/order/CreateOrderController';
 import { RemoveOrderController } from './controllers/order/RemoveOrderController';
 
+import { AddItemController } from './controllers/order/AddItemController';
 
 import uploadConfig from './config/multer';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
+import { RemoveItemController } from './controllers/order/RemoveItemController';
+import { SendOrderController } from './controllers/order/SendOrderController';
+import { ListOrderController } from './controllers/order/ListOrderController';
+import { DetailOrderController } from './controllers/order/DetailOrderController';
+import { FinishOrderController } from './controllers/order/FinishOrderController';
 
 const router = Router();
 
@@ -48,5 +54,17 @@ router.get('/category/product', isAuthenticated, new ListByCategoryController().
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
 
 router.delete('/order', isAuthenticated, new RemoveOrderController().handle)
+
+router.post('/order/add', isAuthenticated, new AddItemController().handle)
+
+router.delete('/order/remove', isAuthenticated, new RemoveItemController().handle)
+
+router.put('/order/send', isAuthenticated, new SendOrderController().handle)
+
+router.get('/orders', isAuthenticated, new ListOrderController().handle)
+
+router.get('/order/detail', isAuthenticated, new DetailOrderController().handle)
+
+router.put('/order/finish', isAuthenticated, new FinishOrderController().handle)
 
 export { router };
